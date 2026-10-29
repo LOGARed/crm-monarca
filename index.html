@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM Monarca • Acceso Directo</title>
+  <style>
+    body { background: #07090E; color: #F3F4F6; font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
+    .box { background: #0D121F; border: 1px solid rgba(212,175,55,0.4); border-radius: 24px; padding: 32px; max-width: 360px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .title { color: #E5C158; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+    .sub { color: #9CA3AF; font-size: 13px; margin-bottom: 20px; }
+    .btn { display: inline-block; background: linear-gradient(135deg, #D4AF37, #AA8010); color: #07090E; font-weight: 700; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div style="font-size:36px;margin-bottom:10px;">👑</div>
+    <div class="title">Conectando a CRM Monarca...</div>
+    <div class="sub" id="status-msg">Redirigiendo automáticamente al servidor activo...</div>
+    <a id="manual-link" href="https://adding-followed-crucial-preliminary.trycloudflare.com" class="btn">Entrar Ahora</a>
+  </div>
+  <script>
+    (async function() {
+      try {
+        const res = await fetch('https://raw.githubusercontent.com/LOGARed/crm-monarca/main/tunnel.json?t=' + Date.now(), { cache: 'no-store' });
+        const data = await res.json();
+        if (data && data.url) {
+          document.getElementById('manual-link').href = data.url;
+          window.location.replace(data.url);
+          return;
+        }
+      } catch (e) {}
+      window.location.replace('https://adding-followed-crucial-preliminary.trycloudflare.com');
+    })();
+  </script>
+</body>
+</html>
