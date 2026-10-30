@@ -4,34 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRM Monarca • Acceso Directo</title>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
   <style>
-    body { background: #07090E; color: #F3F4F6; font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
-    .box { background: #0D121F; border: 1px solid rgba(212,175,55,0.4); border-radius: 24px; padding: 32px; max-width: 360px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
-    .title { color: #E5C158; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
-    .sub { color: #9CA3AF; font-size: 13px; margin-bottom: 20px; }
-    .btn { display: inline-block; background: linear-gradient(135deg, #D4AF37, #AA8010); color: #07090E; font-weight: 700; padding: 12px 24px; border-radius: 12px; text-decoration: none; font-size: 14px; }
+    body { background: #07090E; color: #F3F4F6; font-family: system-ui, -apple-system, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; text-align: center; }
+    .box { background: #0D121F; border: 1px solid rgba(212,175,55,0.4); border-radius: 24px; padding: 32px; max-width: 380px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .title { color: #E5C158; font-weight: 700; font-size: 20px; margin-bottom: 8px; letter-spacing: 0.5px; }
+    .sub { color: #9CA3AF; font-size: 13px; margin-bottom: 24px; line-height: 1.5; }
+    .btn { display: inline-block; background: linear-gradient(135deg, #E5C158, #AA8010); color: #07090E; font-weight: 700; padding: 14px 28px; border-radius: 14px; text-decoration: none; font-size: 15px; box-shadow: 0 4px 15px rgba(212,175,55,0.3); transition: transform 0.15s; }
+    .btn:active { transform: scale(0.97); }
+    .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid rgba(229,193,88,0.3); border-top-color: #E5C158; border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; margin-right: 8px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
   <div class="box">
-    <div style="font-size:36px;margin-bottom:10px;">👑</div>
-    <div class="title">Conectando a CRM Monarca...</div>
-    <div class="sub" id="status-msg">Redirigiendo automáticamente al servidor activo...</div>
-    <a id="manual-link" href="https://adding-followed-crucial-preliminary.trycloudflare.com" class="btn">Entrar Ahora</a>
+    <div style="font-size:42px;margin-bottom:12px;">👑</div>
+    <div class="title">CRM MONARCA</div>
+    <div class="sub" id="status-msg">
+      <span class="spinner"></span> Conectando con la laptop principal...
+    </div>
+    <a id="manual-link" href="#" class="btn" style="display:none;">Entrar al CRM</a>
   </div>
   <script>
-    (async function() {
-      try {
-        const res = await fetch('https://raw.githubusercontent.com/LOGARed/crm-monarca/main/tunnel.json?t=' + Date.now(), { cache: 'no-store' });
-        const data = await res.json();
-        if (data && data.url) {
-          document.getElementById('manual-link').href = data.url;
-          window.location.replace(data.url);
-          return;
+    async function resolverTunel() {
+      const statusEl = document.getElementById('status-msg');
+      const btnEl = document.getElementById('manual-link');
+      
+      const fuentes = [
+        './tunnel.json?t=' + Date.now(),
+        'https://raw.githubusercontent.com/LOGARed/crm-monarca/main/tunnel.json?t=' + Date.now()
+      ];
+
+      for (const url of fuentes) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.url && data.url.startsWith('https://')) {
+              statusEl.innerHTML = '✅ Conexión establecida. Redirigiendo...';
+              btnEl.href = data.url;
+              btnEl.style.display = 'inline-block';
+              window.location.replace(data.url);
+              return;
+            }
+          }
+        } catch (e) {
+          console.warn('Error en fuente:', url, e);
         }
-      } catch (e) {}
-      window.location.replace('https://adding-followed-crucial-preliminary.trycloudflare.com');
-    })();
+      }
+
+      // Si aún no está disponible, reintentar cada 2 segundos
+      statusEl.innerHTML = '⏳ El servidor se está sincronizando... Reintentando automáticamente en breve.';
+      setTimeout(resolverTunel, 2000);
+    }
+
+    resolverTunel();
   </script>
 </body>
 </html>
