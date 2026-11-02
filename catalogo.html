@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Oficial de Piedra Sinterizada • Cocinas Monarca</title>
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <style>
+    body {
+      background: #07090E;
+      color: #F3F4F6;
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .header {
+      width: 100%;
+      max-width: 900px;
+      padding: 24px 20px 16px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .logo-badge {
+      display: inline-block;
+      font-size: 32px;
+      margin-bottom: 6px;
+    }
+    h1 {
+      color: #E5C158;
+      font-size: 20px;
+      margin: 0 0 8px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    p.subtitle {
+      color: #9CA3AF;
+      font-size: 13px;
+      margin: 0 0 20px;
+      line-height: 1.4;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .btn-download {
+      background: linear-gradient(135deg, #E5C158, #AA8010);
+      color: #07090E;
+      font-weight: 700;
+      padding: 14px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-download:active {
+      transform: scale(0.97);
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: #FFFFFF;
+      font-weight: 700;
+      padding: 14px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(37,211,102,0.3);
+      transition: transform 0.15s;
+    }
+    .btn-whatsapp:active {
+      transform: scale(0.97);
+    }
+    .viewer-container {
+      width: 95%;
+      max-width: 900px;
+      flex: 1;
+      height: 75vh;
+      min-height: 500px;
+      background: #111827;
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .footer {
+      color: #6B7280;
+      font-size: 11px;
+      text-align: center;
+      padding: 12px 20px 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo-badge">👑</div>
+    <h1>Catálogo Oficial de Piedra Sinterizada (37 Páginas)</h1>
+    <p class="subtitle">Cocinas Arquitectónicas Residenciales Monarca • Cubiertas ultrarresistentes al fuego directo, rayaduras y vetas continuas.</p>
+    <div class="actions">
+      <a href="./Catalogo_Piedra_Sinterizada_Monarca.pdf" download="Catalogo_Piedra_Sinterizada_Monarca.pdf" class="btn-download">
+        📥 Descargar Catálogo en PDF (6.4 MB)
+      </a>
+      <a href="https://wa.me/527299665714?text=Hola,%20estoy%20revisando%20el%20Cat%C3%A1logo%20de%20Piedra%20Sinterizada%20y%20me%20gustar%C3%ADa%20cotizar%20mi%20cocina." class="btn-whatsapp" target="_blank">
+        💬 Cotizar por WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <div class="viewer-container">
+    <iframe src="https://docs.google.com/viewer?url=https://logared.github.io/crm-monarca/Catalogo_Piedra_Sinterizada_Monarca.pdf&embedded=true"></iframe>
+  </div>
+
+  <div class="footer">
+    © Cocinas Arquitectónicas Residenciales Monarca • Planta de Fabricación: San Miguel Ameyalco, Lerma, EdoMex.
+  </div>
+</body>
+</html>
